@@ -10,30 +10,70 @@
             <img src="/static/logo.png" alt="SportivaX Logo" class="form-logo">
             <h1 class="brand-name-dark">SportivaX</h1>
         </div>
-        <h1>Student Registrations</h1>
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Student ID</th>
-                    <th>Sport</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for reg in registrations %}
-                <tr>
-                    <td>{{ reg.name }}</td>
-                    <td>{{ reg.sid }}</td>
-                    <td>{{ reg.sport }}</td>
-                </tr>
-                {% endfor %}
-                {% if not registrations %}
-                <tr>
-                    <td colspan="3" style="text-align: center;">No registrations found yet.</td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
+        
+        <section>
+            <h2>Manage Sports Cards</h2>
+            <form action="/admin/add-sport" method="post" class="admin-form">
+                <input type="text" name="name" placeholder="Sport Name" required>
+                <input type="text" name="coach" placeholder="Coach Name" required>
+                <input type="text" name="timing" placeholder="Timing" required>
+                <input type="text" name="venue" placeholder="Venue" required>
+                <button type="submit" class="btn">Add Sport Card</button>
+            </form>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Sport Name</th>
+                        <th>Coach</th>
+                        <th>Timing</th>
+                        <th>Venue</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sport in sports %}
+                    <tr>
+                        <td>{{ sport.name }}</td>
+                        <td>{{ sport.coach }}</td>
+                        <td>{{ sport.timing }}</td>
+                        <td>{{ sport.venue }}</td>
+                        <td>
+                            <a href="/admin/delete-sport/{{ sport.id }}" class="btn-delete" onclick="return confirm('Delete this card?')">Remove</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section style="margin-top: 40px;">
+            <h2>Student Registrations</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Student ID</th>
+                        <th>Sport</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in registrations %}
+                    <tr>
+                        <td>{{ reg.name }}</td>
+                        <td>{{ reg.sid }}</td>
+                        <td>{{ reg.sport }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if not registrations %}
+                    <tr>
+                        <td colspan="3" style="text-align: center;">No registrations found yet.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </section>
+        
         <br>
         <a href="/" class="btn">Back to Home</a>
     </div>
