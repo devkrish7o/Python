@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports Management System</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Campus Sports Portal</h1>
+            <div class="links">
+                <a href="/">Home</a>
+                <a href="/admin">Admin View</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <h2>Available Sports</h2>
+        <div class="sports-grid">
+            {% for sport in sports %}
+            <div class="sport-card">
+                <h3>{{ sport.name }}</h3>
+                <p><strong>Coach:</strong> {{ sport.coach }}</p>
+                <p><strong>Time:</strong> {{ sport.timing }}</p>
+                <p><strong>Venue:</strong> {{ sport.venue }}</p>
+                <a href="/register/{{ sport.id }}" class="btn">Register Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Student Sports Management Project</p>
+    </footer>
+</body>
+</html>
